@@ -1,0 +1,88 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "project",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "githubUrl": {
+      "type": "string"
+    },
+    "projectUrl": {
+      "type": "string"
+    },
+    "slogan": {
+      "type": "string",
+      "required": false
+    },
+    "sortIndex": {
+      "type": "integer",
+      "required": true,
+      "min": 1
+    },
+    "resumeDescription": {
+      "type": "text"
+    },
+    "shortDescription": {
+      "type": "text",
+      "required": true
+    },
+    "startDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "technologies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::technology.technology",
+      "inversedBy": "projects"
+    },
+    "page_metadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page-metadata.page-metadata"
+    },
+    "description": {
+      "type": "blocks",
+      "required": true
+    }
+  }
+}

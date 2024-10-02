@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "page_metadatas",
+  "info": {
+    "singularName": "page-metadata",
+    "pluralName": "page-metadatas",
+    "displayName": "pageMetadata"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "referrer": {
+      "type": "string",
+      "required": true,
+      "default": "strict-origin-when-cross-origin"
+    },
+    "applicationName": {
+      "type": "string",
+      "required": true,
+      "default": "Eric Webb's Portfolio Website"
+    },
+    "creator": {
+      "type": "string",
+      "required": true,
+      "default": "Eric Webb"
+    },
+    "publisher": {
+      "type": "string",
+      "required": true,
+      "default": "Eric Webb"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "keywords": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employers",
+  "info": {
+    "singularName": "employer",
+    "pluralName": "employers",
+    "displayName": "employer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "jobTitle": {
+      "type": "string",
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "location": {
+      "type": "string"
+    },
+    "accomplishments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::accomplishment.accomplishment",
+      "mappedBy": "employer"
+    }
+  }
+}

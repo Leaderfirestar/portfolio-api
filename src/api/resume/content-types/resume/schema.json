@@ -1,0 +1,48 @@
+{
+  "kind": "singleType",
+  "collectionName": "resumes",
+  "info": {
+    "singularName": "resume",
+    "pluralName": "resumes",
+    "displayName": "Resume",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "page_metadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page-metadata.page-metadata"
+    },
+    "colleges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::college.college"
+    },
+    "employers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::employer.employer"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
+    },
+    "technologies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::technology.technology"
+    },
+    "resume": {
+      "allowedTypes": [
+        "files"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

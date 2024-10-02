@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colleges",
+  "info": {
+    "singularName": "college",
+    "pluralName": "colleges",
+    "displayName": "college"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "gpa": {
+      "type": "decimal",
+      "required": true,
+      "min": 0,
+      "max": 4
+    },
+    "degrees": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::degree.degree",
+      "mappedBy": "college"
+    }
+  }
+}

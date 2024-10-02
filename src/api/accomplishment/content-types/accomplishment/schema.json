@@ -4,7 +4,8 @@
   "info": {
     "singularName": "accomplishment",
     "pluralName": "accomplishments",
-    "displayName": "accomplishment"
+    "displayName": "accomplishment",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,8 +18,14 @@
       "unique": false
     },
     "value": {
-      "type": "string",
+      "type": "text",
       "required": true
+    },
+    "employer": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::employer.employer",
+      "inversedBy": "accomplishments"
     }
   }
 }

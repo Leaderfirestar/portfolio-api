@@ -1,0 +1,84 @@
+{
+  "kind": "singleType",
+  "collectionName": "personal_infos",
+  "info": {
+    "singularName": "personal-info",
+    "pluralName": "personal-infos",
+    "displayName": "personalInfo"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "firstName": {
+      "type": "string",
+      "required": true,
+      "default": "Eric"
+    },
+    "lastName": {
+      "type": "string",
+      "required": true,
+      "default": "Webb"
+    },
+    "address": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string",
+      "required": true
+    },
+    "state": {
+      "type": "string",
+      "required": true
+    },
+    "zip": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "github": {
+      "type": "string",
+      "required": true,
+      "default": "https://github.com/Leaderfirestar"
+    },
+    "jobTitle": {
+      "type": "string",
+      "required": true
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string",
+      "required": true,
+      "regex": "^(\\+0?1\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$"
+    },
+    "profile": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "bio": {
+      "type": "blocks",
+      "required": true
+    },
+    "page_metadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page-metadata.page-metadata"
+    },
+    "quotes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::quote.quote"
+    }
+  }
+}

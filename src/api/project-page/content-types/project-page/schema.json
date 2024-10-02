@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "project_pages",
+  "info": {
+    "singularName": "project-page",
+    "pluralName": "project-pages",
+    "displayName": "projectPage",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "Projects",
+      "required": true,
+      "unique": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "page_metadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page-metadata.page-metadata"
+    }
+  }
+}

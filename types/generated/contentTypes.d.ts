@@ -1,34 +1,5 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
-export interface ApiAccomplishmentAccomplishment
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'accomplishments';
-  info: {
-    singularName: 'accomplishment';
-    pluralName: 'accomplishments';
-    displayName: 'accomplishment';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    value: Schema.Attribute.String & Schema.Attribute.Required;
-    createdAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::accomplishment.accomplishment'
-    >;
-  };
-}
-
 export interface PluginUploadFile extends Struct.CollectionTypeSchema {
   collectionName: 'files';
   info: {
@@ -514,6 +485,427 @@ export interface PluginUsersPermissionsUser
   };
 }
 
+export interface ApiAccomplishmentAccomplishment
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'accomplishments';
+  info: {
+    singularName: 'accomplishment';
+    pluralName: 'accomplishments';
+    displayName: 'accomplishment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    value: Schema.Attribute.Text & Schema.Attribute.Required;
+    employer: Schema.Attribute.Relation<'manyToOne', 'api::employer.employer'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::accomplishment.accomplishment'
+    >;
+  };
+}
+
+export interface ApiCollegeCollege extends Struct.CollectionTypeSchema {
+  collectionName: 'colleges';
+  info: {
+    singularName: 'college';
+    pluralName: 'colleges';
+    displayName: 'college';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    gpa: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+          max: 4;
+        },
+        number
+      >;
+    degrees: Schema.Attribute.Relation<'oneToMany', 'api::degree.degree'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::college.college'
+    >;
+  };
+}
+
+export interface ApiDegreeDegree extends Struct.CollectionTypeSchema {
+  collectionName: 'degrees';
+  info: {
+    singularName: 'degree';
+    pluralName: 'degrees';
+    displayName: 'degree';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    field: Schema.Attribute.String & Schema.Attribute.Required;
+    college: Schema.Attribute.Relation<'manyToOne', 'api::college.college'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::degree.degree'>;
+  };
+}
+
+export interface ApiEmployerEmployer extends Struct.CollectionTypeSchema {
+  collectionName: 'employers';
+  info: {
+    singularName: 'employer';
+    pluralName: 'employers';
+    displayName: 'employer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    jobTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    endDate: Schema.Attribute.Date;
+    location: Schema.Attribute.String;
+    accomplishments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::accomplishment.accomplishment'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::employer.employer'
+    >;
+  };
+}
+
+export interface ApiPageMetadataPageMetadata
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'page_metadatas';
+  info: {
+    singularName: 'page-metadata';
+    pluralName: 'page-metadatas';
+    displayName: 'pageMetadata';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    referrer: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'strict-origin-when-cross-origin'>;
+    applicationName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<"Eric Webb's Portfolio Website">;
+    creator: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Eric Webb'>;
+    publisher: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Eric Webb'>;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    keywords: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-metadata.page-metadata'
+    >;
+  };
+}
+
+export interface ApiPersonalInfoPersonalInfo extends Struct.SingleTypeSchema {
+  collectionName: 'personal_infos';
+  info: {
+    singularName: 'personal-info';
+    pluralName: 'personal-infos';
+    displayName: 'personalInfo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    firstName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Eric'>;
+    lastName: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Webb'>;
+    address: Schema.Attribute.String & Schema.Attribute.Required;
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    state: Schema.Attribute.String & Schema.Attribute.Required;
+    zip: Schema.Attribute.String & Schema.Attribute.Required;
+    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    github: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'https://github.com/Leaderfirestar'>;
+    jobTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    linkedin: Schema.Attribute.String;
+    phoneNumber: Schema.Attribute.String & Schema.Attribute.Required;
+    profile: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    bio: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    page_metadata: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::page-metadata.page-metadata'
+    >;
+    quotes: Schema.Attribute.Relation<'oneToMany', 'api::quote.quote'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::personal-info.personal-info'
+    >;
+  };
+}
+
+export interface ApiProjectProject extends Struct.CollectionTypeSchema {
+  collectionName: 'projects';
+  info: {
+    singularName: 'project';
+    pluralName: 'projects';
+    displayName: 'project';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    slug: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    githubUrl: Schema.Attribute.String;
+    projectUrl: Schema.Attribute.String;
+    slogan: Schema.Attribute.String;
+    sortIndex: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    resumeDescription: Schema.Attribute.Text;
+    shortDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    startDate: Schema.Attribute.Date;
+    endDate: Schema.Attribute.Date;
+    gallery: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    image: Schema.Attribute.Media<'images'>;
+    technologies: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::technology.technology'
+    >;
+    page_metadata: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::page-metadata.page-metadata'
+    >;
+    description: Schema.Attribute.Blocks & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project.project'
+    >;
+  };
+}
+
+export interface ApiProjectPageProjectPage extends Struct.SingleTypeSchema {
+  collectionName: 'project_pages';
+  info: {
+    singularName: 'project-page';
+    pluralName: 'project-pages';
+    displayName: 'projectPage';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.DefaultTo<'Projects'>;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    page_metadata: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::page-metadata.page-metadata'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::project-page.project-page'
+    >;
+  };
+}
+
+export interface ApiQuoteQuote extends Struct.CollectionTypeSchema {
+  collectionName: 'quotes';
+  info: {
+    singularName: 'quote';
+    pluralName: 'quotes';
+    displayName: 'quote';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    value: Schema.Attribute.Text & Schema.Attribute.Required;
+    author: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::quote.quote'>;
+  };
+}
+
+export interface ApiResumeResume extends Struct.SingleTypeSchema {
+  collectionName: 'resumes';
+  info: {
+    singularName: 'resume';
+    pluralName: 'resumes';
+    displayName: 'Resume';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    page_metadata: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::page-metadata.page-metadata'
+    >;
+    colleges: Schema.Attribute.Relation<'oneToMany', 'api::college.college'>;
+    employers: Schema.Attribute.Relation<'oneToMany', 'api::employer.employer'>;
+    projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
+    technologies: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::technology.technology'
+    >;
+    resume: Schema.Attribute.Media<'files'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::resume.resume'>;
+  };
+}
+
+export interface ApiTechnologyTechnology extends Struct.CollectionTypeSchema {
+  collectionName: 'technologies';
+  info: {
+    singularName: 'technology';
+    pluralName: 'technologies';
+    displayName: 'technology';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    logo: Schema.Attribute.Media<'images'>;
+    projects: Schema.Attribute.Relation<'manyToMany', 'api::project.project'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::technology.technology'
+    >;
+  };
+}
+
 export interface AdminPermission extends Struct.CollectionTypeSchema {
   collectionName: 'admin_permissions';
   info: {
@@ -879,7 +1271,6 @@ export interface AdminTransferTokenPermission
 declare module '@strapi/strapi' {
   export module Public {
     export interface ContentTypeSchemas {
-      'api::accomplishment.accomplishment': ApiAccomplishmentAccomplishment;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -890,6 +1281,17 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::accomplishment.accomplishment': ApiAccomplishmentAccomplishment;
+      'api::college.college': ApiCollegeCollege;
+      'api::degree.degree': ApiDegreeDegree;
+      'api::employer.employer': ApiEmployerEmployer;
+      'api::page-metadata.page-metadata': ApiPageMetadataPageMetadata;
+      'api::personal-info.personal-info': ApiPersonalInfoPersonalInfo;
+      'api::project.project': ApiProjectProject;
+      'api::project-page.project-page': ApiProjectPageProjectPage;
+      'api::quote.quote': ApiQuoteQuote;
+      'api::resume.resume': ApiResumeResume;
+      'api::technology.technology': ApiTechnologyTechnology;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;
