@@ -32,17 +32,17 @@
       "relation": "oneToMany",
       "target": "api::project.project"
     },
-    "technologies": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::technology.technology"
-    },
     "resume": {
+      "type": "media",
+      "multiple": false,
       "allowedTypes": [
         "files"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "techcategories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::techcategory.techcategory"
     }
   }
 }

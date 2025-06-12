@@ -769,9 +769,9 @@ export interface ApiResumeResume extends Struct.SingleTypeSchema {
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     resume: Schema.Attribute.Media<'files'>;
-    technologies: Schema.Attribute.Relation<
+    techcategories: Schema.Attribute.Relation<
       'oneToMany',
-      'api::technology.technology'
+      'api::techcategory.techcategory'
     >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
