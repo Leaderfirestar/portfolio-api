@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "techcategories",
+  "info": {
+    "singularName": "techcategory",
+    "pluralName": "techcategories",
+    "displayName": "techcategory"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "technologies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::technology.technology",
+      "inversedBy": "categories"
+    }
+  }
+}

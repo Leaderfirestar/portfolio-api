@@ -17,17 +17,23 @@
       "unique": true
     },
     "logo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": false
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "projects": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::project.project",
+      "mappedBy": "technologies"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::techcategory.techcategory",
       "mappedBy": "technologies"
     }
   }
